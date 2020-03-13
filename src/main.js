@@ -20,6 +20,7 @@ import './permission' // permission control
 import './mock' // simulation data
 
 import * as filters from './filters' // global filters
+import CesiumMap from './views/map/index.vue'
 
 Vue.use(Element, {
   size: Cookies.get('size') || 'medium', // set element-ui default size
@@ -38,5 +39,5 @@ new Vue({
   router,
   store,
   i18n,
-  render: h => h(App)
+  render: h => h(CesiumMap)
 })

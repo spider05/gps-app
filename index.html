@@ -6,9 +6,15 @@
     <meta name="renderer" content="webkit">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>vue-element-admin</title>
+    <link href=<%= BASE_URL %>/Build/Cesium/Widgets/widgets.css rel="stylesheet"></link>
+    <script type="text/javascript" src=<%= BASE_URL %>/Build/Cesium/Cesium.js data-main="js/main"></script>
+    <script type="text/javascript" src=<%= BASE_URL %>/Build/Cesium/Workers/zlib.min.js data-main="js/main"></script>
+    <script type="text/javascript" src=<%= BASE_URL %>/js/jquery.min.js data-main="js/main"></script>
   </head>
   <body>
-    <script src=<%= BASE_URL %>/tinymce4.7.5/tinymce.min.js></script>
+
+    <script src=<%= BASE_URL %>/tinymce4.7.5/tinymce.min.js> </script>
+ 
     <div id="app"></div>
     <!-- built files will be auto injected -->
   </body>
