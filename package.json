@@ -16,7 +16,11 @@
   },
   "lint-staged": {
     "src/**/*.{js,vue}": [
-
+    ]
+  },
+  "lint-staged2": {
+    "src/**/*.{js,vue}": [
+      "eslint --fix",
       "git add"
     ]
   },
