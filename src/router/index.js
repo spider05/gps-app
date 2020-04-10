@@ -102,6 +102,19 @@ export const constantRoutes = [
         meta: { title: 'guide', icon: 'guide', noCache: true }
       }
     ]
+  },
+  {
+    path: '/gps',
+    component: Layout,
+    redirect: '/gps/index',
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/gps/index'),
+        name: 'gps',
+        meta: { title: 'gps', icon: 'guide', noCache: true }
+      }
+    ]
   }
 ]
 

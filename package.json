@@ -9,13 +9,14 @@
     "build:prod": "cross-env NODE_ENV=production env_config=prod node build/build.js",
     "build:sit": "cross-env NODE_ENV=production env_config=sit node build/build.js",
     "lint": "eslint --ext .js,.vue src",
+    "lint-fix": "eslint --fix --ext .js --ext .jsx --ext .vue src",
     "test": "npm run lint",
     "precommit": "lint-staged",
     "svgo": "svgo -f src/icons/svg --config=src/icons/svgo.yml"
   },
   "lint-staged": {
     "src/**/*.{js,vue}": [
-      "eslint --fix",
+
       "git add"
     ]
   },
@@ -40,7 +41,7 @@
     "driver.js": "0.8.1",
     "dropzone": "5.2.0",
     "echarts": "4.1.0",
-    "element-ui": "2.4.11",
+    "element-ui": "2.13.0",
     "file-saver": "1.3.8",
     "fuse.js": "3.4.2",
     "js-cookie": "2.2.0",

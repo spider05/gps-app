@@ -4,6 +4,7 @@ export default {
     introduction: '简述',
     documentation: '文档',
     guide: '引导页',
+    gps: '北斗监控',
     permission: '权限测试页',
     rolePermission: '角色权限',
     pagePermission: '页面权限',
