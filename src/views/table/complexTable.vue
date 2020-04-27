@@ -344,6 +344,7 @@ export default {
         const tHeader = ['timestamp', 'title', 'type', 'importance', 'status']
         const filterVal = ['timestamp', 'title', 'type', 'importance', 'status']
         const data = this.formatJson(filterVal, this.list)
+        console.log('excel:', excel, data)
         excel.export_json_to_excel({
           header: tHeader,
           data,

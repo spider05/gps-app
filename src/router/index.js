@@ -48,7 +48,9 @@ export const constantRoutes = [
   {
     path: '/login',
     component: () => import('@/views/login/index'),
-    hidden: true
+    name: 'login',
+    meta: { title: 'login', icon: 'guide', noCache: true }
+    // hidden: true
   },
   {
     path: '/auth-redirect',
@@ -106,13 +108,21 @@ export const constantRoutes = [
   {
     path: '/gps',
     component: Layout,
-    redirect: '/gps/index',
+    // redirect: '/gps/index',
+    name: 'gps',
+    meta: { title: 'gps', icon: 'guide' },
     children: [
       {
         path: 'index',
         component: () => import('@/views/gps/index'),
         name: 'gps',
         meta: { title: 'gps', icon: 'guide', noCache: true }
+      },
+      {
+        path: 'OrgList',
+        component: () => import('@/views/gps/OrgList'),
+        name: 'orgList',
+        meta: { title: '组织管理', icon: 'guide', noCache: true }
       }
     ]
   }

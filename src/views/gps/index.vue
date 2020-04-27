@@ -6,12 +6,14 @@
       </div>
       <div id="gps-oper">
         <com-select @openCOM="openCOM" />
-        <el-button class="first-button gps-button" size="mini" type="primary" @click="handleMonitor">实时监控</el-button>
-        <el-button class="gps-button" size="mini" type="primary">刷新终端</el-button>
+        <el-button class="first-button gps-button" size="mini" type="primary" @click="handleMonitor">
+          {{ this.$store.state.gps.checkedItems.length > 0?"停止监控":"开始监控" }}
+        </el-button>
+        <el-button class="gps-button" size="mini" type="primary" @click="handleRefresh">刷新终端</el-button>
         <el-button class="gps-button" :disabled="!connect" size="mini" type="primary">IC卡信息</el-button>
-        <el-button class="gps-button" :disabled="!connect" size="mini" type="primary" @click="sendDWSQ({bdUser:456514,type:0,freq:0})">单次申请</el-button>
-        <el-button class="gps-button" :disabled="!connect" size="mini" type="primary" @click="sendDWSQ({bdUser:456514,type:2,freq:6})">连续定位</el-button>
-        <el-button class="gps-button" :disabled="!connect" size="mini" type="primary" @click="sendDWSQ({bdUser:456514,type:1,freq:0})">紧急定位</el-button>
+        <el-button class="gps-button" :disabled="!connect" size="mini" type="primary" @click="sendDWSQ({bdUser:456514,type:0,freq:0})">定位申请</el-button>
+        <!-- <el-button class="gps-button" :disabled="!connect" size="mini" type="primary" @click="sendDWSQ({bdUser:456514,type:2,freq:6})">连续定位</el-button>
+        <el-button class="gps-button" :disabled="!connect" size="mini" type="primary" @click="sendDWSQ({bdUser:456514,type:1,freq:0})">紧急定位</el-button> -->
         <el-button class="gps-button" :disabled="!connect" size="mini" type="primary" @click="handleShowMsgForm(true)">发送短信</el-button>
         <el-button class="gps-button" :disabled="!connect" size="mini" type="primary" @click="sendWZBG">位置报告</el-button>
       </div>
@@ -101,18 +103,35 @@ export default {
       }
       )
     },
-    handleMonitor() {
-      const chks = this.$refs.dvTree.getCheckedNodes()
-      //  console.log(chks)
-      if (chks.length > 0) {
-        // 放全局变量里
-        this.$store.dispatch('getCheckedItems', chks)
-        // 获取选中的终端
-        const arr = this.getCheckedTermianls(chks)
-        // console.log("arr",arr);
-        this.monitorData = arr
-        // //定时器
-        // this.$refs.gpsInfoComp.operatorInterval(true);
+    handleRefresh() {
+      this.$store.dispatch('getGPSTreeData', rootOrgID)
+    },
+    handleMonitor(e) {
+      const text = e.target.innerText
+      if (text === '开始监控') {
+        const chks = this.$refs.dvTree.getCheckedNodes()
+        //  console.log(chks)
+        if (chks.length < 1) {
+          Message({
+            message: '请选中需要监控的对象',
+            type: 'warning',
+            duration: 3 * 1000
+          })
+        } else {
+          // 放全局变量里
+          this.$store.dispatch('getCheckedItems', chks)
+          // 获取选中的终端
+          const arr = this.getCheckedTermianls(chks)
+          // console.log("arr",arr);
+          this.monitorData = arr
+          // 定时器
+          this.$refs.gpsInfoComp.operatorInterval(true)
+        }
+      } else {
+        // 关闭定时器
+        this.$refs.gpsInfoComp.operatorInterval(false)
+        this.monitorData = []
+        this.$store.dispatch('getCheckedItems', [])
       }
     },
     /** 获取选中的终端 */

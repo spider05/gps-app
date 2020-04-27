@@ -27,7 +27,6 @@ Axios.interceptors.request.use(config => {
   //     Object.keys(config.data).forEach(key => formData.append(key, config.data[key]))
   //     config.data = formData
   // }
-
   // 携带token
   if (TokenCache.getToken()) {
     config.headers.Authorization = 'Bearer ' + TokenCache.getToken()

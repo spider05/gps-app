@@ -9,6 +9,7 @@ import { request, getOptions, postOptions } from './request'
 // export能直接导出变量表达式，export default不行
 
 export const GPSServer = {
+  getOrganizeDataList: (values) => request('GPS/GPS_Organize/GetDataList', postOptions(values)), // 获取组织树,
   getOrganizesByOrgID: (values) => request('GPS/GPS_Organize/GetOrganizesByOrgID', getOptions(values)), // 组织树,
   getOrgTreeByOrgID: (values) => request('GPS/GPS_Organize/GetOrgTreeByOrgID', getOptions(values)), // 组织树,
   getTerminalsByOrgID: (values) => request('GPS/GPS_Terminal/GetTermianlsByOrgID', getOptions(values)), // 根据组织获取终端

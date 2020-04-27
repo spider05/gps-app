@@ -35,7 +35,7 @@ export default {
   computed: {
     getData() {
       const arr = this.gpsTreeData.filter(x => x.modeltype == 0)
-      console.log('computed:', arr)
+      // console.log('computed:', arr)
       return this.gpsTreeData
     },
     getDefaultKey() {
